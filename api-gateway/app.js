@@ -3,21 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mongoose = require('mongoose');
-
-mongoose.Promise = require('bluebird');
-
-/**Database connection */
-
-mongoose.connect('mongodb+srv://admin01:admin@buwebdev-cluster-1-akyor.mongodb.net/api-gateway', {
-
-        promiseLibrary: require('bluebird')
-    }).then(() => console.log('connection successful'))
-    .catch((err) => console.error(err));
 
 var indexRouter = require('./routes/index');
-
-
+var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 var app = express();
 
 // view engine setup
@@ -32,11 +21,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));
 });
+
+/**
+*
+Database connection
+*/
+mongoose.connect('mongodb+srv://admin01:admin@buwebdev-cluster-1-akyor.mongodb.net/api-gateway', {
+        promiseLibrary: require('bluebird')
+    }).then(() => console.log('connection successful'))
+    .catch((err) => console.error(err));
 
 // error handler
 app.use(function(err, req, res, next) {
