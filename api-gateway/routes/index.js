@@ -5,8 +5,7 @@
 ; Date:   10 May 2020
 ; Description: routes/index.js 
 ;===========================================
-/ *
-
+*/
 
 
 var express = require('express');
