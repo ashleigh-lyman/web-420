@@ -29,10 +29,7 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
-/**
-*
-Database connection
-*/
+
 const mongoDB = "mongodb+srv://admin:Lymanfamily1@buwebdev-cluster-1-akyor.mongodb.net/api-gateway";
 mongoose.connect(mongoDB, {
     useMongoClient: true
