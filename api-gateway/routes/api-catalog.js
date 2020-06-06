@@ -8,6 +8,7 @@
 */
 
 
+
 var express = require('express');
 var router = express.Router();
 
@@ -21,6 +22,14 @@ router.post('/auth/register', auth_controller.user_register);
 
 // GET request for verifying user tokens
 router.get('/auth/token', auth_controller.user_token);
+
+
+// Login request
+router.post('/auth/login', auth_controller.user_login);
+
+
+// Logout request
+router.get('/auth/logout', auth_controller.user_logout);
 
 
 module.exports = router;
