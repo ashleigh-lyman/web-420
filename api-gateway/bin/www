@@ -6,8 +6,6 @@
 ; Description: bin file
 ;===========================================
 / *
-
-
 #!/usr/bin/env node
 
 /**

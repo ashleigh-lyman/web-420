@@ -6,6 +6,14 @@
 ; Description: added new file to controllers api-gateway
 ;===========================================
 */
+//import user schema
+
+/***
+ *
+ * Controller that handles all user functions for the application
+ *
+ ***/
+//import user schema
 var User = require('../models/user');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
@@ -37,15 +45,14 @@ exports.user_register = function(req, res) {
 
 // Verify token on GET
 exports.user_token = function(req, res) {
-    User.getById(req.userId, function(er, user) {
-        if (err) return res.status(500).send('An error occurred while finding the user');
+    User.getById(req.userId, function(err, user) {
+        if (err) return res.status(500).send('There was a problem finding the user.');
+
         if (!user) return res.status(404).send('No user found.');
 
         res.status(200).send(user);
     });
 };
-
-
 
 // user login
 exports.user_login = function(req, res) {

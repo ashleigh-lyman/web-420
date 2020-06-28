@@ -8,7 +8,9 @@
 */
 
 
-
+/**
+ * API Routes
+ */
 var express = require('express');
 var checkToken = require('../check-token');
 var router = express.Router();

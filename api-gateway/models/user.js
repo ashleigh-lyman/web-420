@@ -6,6 +6,12 @@
 ; Description: user model
 ;===========================================
 */
+
+
+/**
+ Fields username, password, and email
+ */
+
 var mongoose = require('mongoose');
 
 

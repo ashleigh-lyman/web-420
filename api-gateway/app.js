@@ -8,18 +8,12 @@
 */
 
 
-//Header
-var header = require('../Lyman-header');
-console.log(header.display('Ashleigh', 'Lyman', 'RESTFUL APIS', '05/15/2020'));
-
-//Empty Line
-console.log("\n");
-
 
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+// var bodyParser = require('body-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -29,18 +23,17 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
+/**
+*
+Database connection
+*/
+mongoose.connect('mongodb+srv://admin:Bartlebee3@buwebdev-cluster-1-akyor.mongodb.net/api-gateway', {
+        promiseLibrary: require('bluebird')
+    }).then(() => console.log('connection successful'))
+    .catch((err) => console.error(err));
 
-const mongoDB = "mongodb+srv://admin:Lymanfamily1@buwebdev-cluster-1-akyor.mongodb.net/api-gateway";
-mongoose.connect(mongoDB, {
-    useMongoClient: true
-});
-mongoose.Promise = global.Promise;
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error: "));
-db.once("open", function() {
-    console.log("Application connected to mLab MongoDB instance");
-});
 
+// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -59,9 +52,9 @@ app.use(function(req, res, next) {
 });
 
 
-
+// error handler
 app.use(function(err, req, res, next) {
-
+    // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
